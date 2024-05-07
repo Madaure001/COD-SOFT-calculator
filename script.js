@@ -11,7 +11,7 @@ const clearButton = document.querySelector('[data-clear]');
 const memoryClearButton = document.querySelector('[data-memory-clear]');
 const memoryAddButton = document.querySelector('[data-memory-add]');
 const memoryDeleteButton = document.querySelector('[data-memory-delete]');
-const memoryRemoveButton = document.querySelector('[data-memory-remove]');
+const memoryRestoreButton = document.querySelector('[data-memory-restore]');
 
 //we will store our current and previous operations in a class
 class Calculator {
@@ -23,7 +23,7 @@ class Calculator {
 
     //create the functionality of our calculator
 
-    clear() {
+    clear = () => {
         //this will clear out different variables
 
         this.currentOperand = '';
@@ -32,12 +32,12 @@ class Calculator {
 
     }
 
-    delete() {
+    delete = () => {
         //this function deletes single item from current operand
         this.currentOperand = this.currentOperand.toString().slice(0, -1);
     }
 
-    appendNumber(number) {
+    appendNumber = (number) => {
         //appends numbers for the output string
 
         //no more than one comma allowed
@@ -46,7 +46,7 @@ class Calculator {
         console.log(this.currentOperand);
     }
 
-    chooseOperation(operation) {
+    chooseOperation = (operation) => {
         //check for empty string
         if (this.currentOperand === '') return;
 
@@ -71,7 +71,7 @@ class Calculator {
         
     }
 
-    compute(){
+    compute = () => {
         //this will compute 
         let computation
         const prev = parseFloat(this.previousOperand.slice(0, -1));
@@ -108,7 +108,7 @@ class Calculator {
         
     }
 
-    updateDisplay() {
+    updateDisplay = () => {
         //this will update the output
         this.currentOperandTextElement.innerText = this.currentOperand; //update the current 
         this.previousOperandTextElement.innerText = this.previousOperand ;//update after an operation
@@ -160,4 +160,22 @@ deleteButton.addEventListener('click', () => {
     calculator.delete();
     //then update the returned string
     calculator.updateDisplay();
+})
+
+let memory = 0
+//Making a memory store button functional
+memoryAddButton.addEventListener('click',function(event){
+  memory = output.value;
+})
+
+//Making memory Clear Button functional
+
+//Making a memory Restore Button functional
+memoryClearButton.addEventListener('click',function(event){
+  memory = 0;
+})
+
+//Making memory Clear Button functional
+memoryRestore.addEventListener('click',function(event){
+  output.value = memory;
 })
